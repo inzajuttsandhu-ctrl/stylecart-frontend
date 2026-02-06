@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Collection | Inza Fashion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Mens Page Specific Styles */
+        .page-header {
+            background: linear-gradient(135deg, #0984e3 0%, #00cec9 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subcategories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .subcategory-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .subcategory-btn:hover,
+        .subcategory-btn.active {
+            background: white;
+            color: #0984e3;
+        }
+        
+        .mens-banner {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 2rem;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+        
+        .banner-main {
+            padding: 3rem;
+            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+            color: white;
+        }
+        
+        .banner-side {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .banner-item {
+            padding: 2rem;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .banner-item.sherwani {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+        }
+        
+        .banner-item.formal {
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+        }
+        
+        .sort-filter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: white;
+            border-radius: 15px;
+            margin: 0 2rem 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .size-options {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .size-option {
+            width: 35px;
+            height: 35px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .size-option:hover,
+        .size-option.active {
+            border-color: #0984e3;
+            background: #0984e3;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .mens-banner {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== NAVBAR ========== -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-logo">
+                <i class="fas fa-crown" style="color: #e84393;"></i>
+                <span class="brand-name">
+                    <span class="brand-first">Inza</span>
+                    <span class="brand-second">Fashion</span>
+                </span>
+            </div>
+
+            <div class="currency-converter">
+                <select id="currency-select">
+                    <option value="PKR">PKR ₨</option>
+                    <option value="USD">USD $</option>
+                </select>
+                <span id="exchange-rate">1$ = ₨280</span>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="mens.html" class="nav-link active"><i class="fas fa-male"></i> Men</a></li>
+                <li><a href="womens.html" class="nav-link"><i class="fas fa-female"></i> Women</a></li>
+                <li><a href="cart.html" class="nav-link cart-link">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                    <span class="cart-count">0</span>
+                </a></li>
+            </ul>
+
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ========== PAGE HEADER ========== -->
+    <div class="page-header" data-aos="fade-down">
+        <h1>Men's Collection</h1>
+        <p>Premium traditional and contemporary wear for the modern gentleman</p>
+        <div class="subcategories">
+            <button class="subcategory-btn active" data-filter="all">All</button>
+            <button class="subcategory-btn" data-filter="kurta">Kurtas</button>
+            <button class="subcategory-btn" data-filter="sherwani">Sherwanis</button>
+            <button class="subcategory-btn" data-filter="waistcoat">Waistcoats</button>
+            <button class="subcategory-btn" data-filter="shalwar">Shalwar Kameez</button>
+            <button class="subcategory-btn" data-filter="casual">Casual Wear</button>
+            <button class="subcategory-btn" data-filter="formal">Formal Wear</button>
+            <button class="subcategory-btn" data-filter="footwear">Footwear</button>
+        </div>
+    </div>
+
+    <!-- ========== MEN'S BANNER ========== -->
+    <div class="mens-banner" data-aos="fade-up">
+        <div class="banner-main">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Eid Collection 2024</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Exclusive designs for the festive season</p>
+            <a href="eid-collection.html" class="btn btn-primary">Shop Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="banner-side">
+            <div class="banner-item sherwani">
+                <h3>Wedding Sherwanis</h3>
+                <p>Starting from ₨15,000</p>
+            </div>
+            <div class="banner-item formal">
+                <h3>Formal Suits</h3>
+                <p>Up to 40% Off</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== SORT & FILTER ========== -->
+    <div class="sort-filter" data-aos="fade-up">
+        <div class="filter-options">
+            <div class="filter-group">
+                <label>Size:</label>
+                <div class="size-options">
+                    <span class="size-option">S</span>
+                    <span class="size-option active">M</span>
+                    <span class="size-option">L</span>
+                    <span class="size-option">XL</span>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <label>Color:</label>
+                <select style="padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                    <option>All Colors</option>
+                    <option>White</option>
+                    <option>Black</option>
+                    <option>Blue</option>
+                    <option>Beige</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Price:</label>
+                <select style="padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                    <option>All Prices</option>
+                    <option>Under ₨3000</option>
+                    <option>₨3000 - ₨7000</option>
+                    <option>₨7000 - ₨15000</option>
+                    <option>Above ₨15000</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="sort-options">
+            <select style="padding: 8px 15px; border: 1px solid #ddd; border-radius: 5px; background: white;">
+                <option>Sort by: Featured</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest First</option>
+                <option>Customer Rating</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- ========== PRODUCTS GRID ========== -->
+    <section class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">All Men's Products</h2>
+                    <p class="section-subtitle">Showing 48 products</p>
+                </div>
+                <div class="view-all-btn">
+                    <i class="fas fa-filter"></i> Filter
+                </div>
+            </div>
+
+            <div class="products-grid" id="mens-products">
+                <!-- Products will load here -->
+                <div class="loading-shimmer" style="height: 400px; border-radius: 20px;"></div>
+                <div class="loading-shimmer" style="height: 400px; border-radius: 20px;"></div>
+                <div class="loading-shimmer" style="height: 400px; border-radius: 20px;"></div>
+                <div class="loading-shimmer" style="height: 400px; border-radius: 20px;"></div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination" style="display: flex; justify-content: center; gap: 1rem; margin-top: 3rem;">
+                <button class="btn btn-secondary" disabled><i class="fas fa-chevron-left"></i> Previous</button>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button style="width: 40px; height: 40px; border-radius: 50%; background: #0984e3; color: white; border: none;">1</button>
+                    <button style="width: 40px; height: 40px; border-radius: 50%; background: #f8f9fa; border: 1px solid #ddd;">2</button>
+                    <button style="width: 40px; height: 40px; border-radius: 50%; background: #f8f9fa; border: 1px solid #ddd;">3</button>
+                    <span style="display: flex; align-items: center;">...</span>
+                    <button style="width: 40px; height: 40px; border-radius: 50%; background: #f8f9fa; border: 1px solid #ddd;">8</button>
+                </div>
+                <button class="btn btn-secondary">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Inza Fashion. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script src="script.js"></script>
+    <script src="currency.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        
+        // Subcategory filtering
+        document.querySelectorAll('.subcategory-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.subcategory-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                // Filter products logic here
+            });
+        });
+        
+        // Size selection
+        document.querySelectorAll('.size-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.size-option').forEach(o => o.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

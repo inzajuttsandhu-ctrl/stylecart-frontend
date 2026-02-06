@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist | Inza Fashion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .wishlist-header {
+            background: linear-gradient(135deg, #e84393 0%, #fd79a8 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .wishlist-container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .wishlist-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .empty-wishlist {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: white;
+            border-radius: 20px;
+            margin: 2rem;
+        }
+        
+        .empty-wishlist i {
+            font-size: 5rem;
+            color: #ddd;
+            margin-bottom: 1.5rem;
+        }
+        
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .wishlist-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .wishlist-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .remove-wishlist {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #ff4757;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .remove-wishlist:hover {
+            background: #ff4757;
+            color: white;
+            transform: rotate(90deg);
+        }
+        
+        .wishlist-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .wishlist-details {
+            padding: 1.5rem;
+        }
+        
+        .wishlist-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .move-to-cart {
+            flex: 2;
+            background: #0984e3;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .move-to-cart:hover {
+            background: #0770c4;
+        }
+        
+        .view-details {
+            flex: 1;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .view-details:hover {
+            background: #e9ecef;
+        }
+        
+        .sale-banner {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #00b894;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .wishlist-sidebar {
+            position: sticky;
+            top: 100px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        
+        .wishlist-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 992px) {
+            .wishlist-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-logo">
+                <i class="fas fa-crown" style="color: #e84393;"></i>
+                <span class="brand-name">
+                    <span class="brand-first">Inza</span>
+                    <span class="brand-second">Fashion</span>
+                </span>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="wishlist.html" class="nav-link active"><i class="fas fa-heart"></i> Wishlist</a></li>
+                <li><a href="cart.html" class="nav-link cart-link">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                    <span class="cart-count">0</span>
+                </a></li>
+                <li><a href="account.html" class="nav-link"><i class="fas fa-user"></i> Account</a></li>
+            </ul>
+
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ========== WISHLIST HEADER ========== -->
+    <div class="wishlist-header">
+        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">My Wishlist</h1>
+        <p style="font-size: 1.1rem; opacity: 0.9;">Save your favorite items for later</p>
+    </div>
+
+    <!-- ========== WISHLIST CONTAINER ========== -->
+    <div class="wishlist-container">
+        <div class="wishlist-stats">
+            <div class="stat-card">
+                <h3 style="color: #e84393; font-size: 2rem;">12</h3>
+                <p>Items in Wishlist</p>
+            </div>
+            <div class="stat-card">
+                <h3 style="color: #0984e3; font-size: 2rem;">₨45,000</h3>
+                <p>Total Value</p>
+            </div>
+            <div class="stat-card">
+                <h3 style="color: #00b894; font-size: 2rem;">4</h3>
+                <p>On Sale</p>
+            </div>
+        </div>
+
+        <div class="wishlist-content">
+            <!-- Main Wishlist Items -->
+            <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h2 style="color: #2d3436;">Saved Items (12)</h2>
+                    <div>
+                        <button style="padding: 0.8rem 1.5rem; background: #f8f9fa; border: 1px solid #ddd; border-radius: 8px; cursor: pointer; margin-right: 1rem;">
+                            <i class="fas fa-sort"></i> Sort
+                        </button>
+                        <button style="padding: 0.8rem 1.5rem; background: #ff4757; color: white; border: none; border-radius: 8px; cursor: pointer;">
+                            <i class="fas fa-trash"></i> Clear All
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-wishlist" style="display: none;" id="empty-wishlist">
+                    <i class="fas fa-heart"></i>
+                    <h3 style="margin-bottom: 1rem; color: #2d3436;">Your wishlist is empty</h3>
+                    <p style="color: #666; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                        Save items you like to your wishlist. Review them anytime and easily move them to the cart.
+                    </p>
+                    <a href="products.html" class="btn btn-primary">Start Shopping <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Wishlist Items Grid -->
+                <div class="wishlist-grid" id="wishlist-items">
+                    <!-- Wishlist items will load here -->
+                    
+                    <!-- Sample Item 1 -->
+                    <div class="wishlist-item">
+                        <span class="sale-banner">SALE</span>
+                        <button class="remove-wishlist" title="Remove from wishlist">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <img src="https://images.unsplash.com/photo-1536766820879-059fec98ec0a?w=400" alt="Product" class="wishlist-image">
+                        <div class="wishlist-details">
+                            <h4 style="margin-bottom: 0.5rem;">Designer Sherwani</h4>
+                            <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Men's Wedding Collection</p>
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <span style="color: #e84393; font-weight: bold; font-size: 1.2rem;">₨25,000</span>
+                                <span style="color: #999; text-decoration: line-through; font-size: 0.9rem;">₨35,000</span>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="move-to-cart">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <button class="view-details">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sample Item 2 -->
+                    <div class="wishlist-item">
+                        <button class="remove-wishlist" title="Remove from wishlist">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=400" alt="Product" class="wishlist-image">
+                        <div class="wishlist-details">
+                            <h4 style="margin-bottom: 0.5rem;">Embroidered Lawn Suit</h4>
+                            <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.5rem;">Women's Summer Collection</p>
+                            <div style="margin-bottom: 1rem;">
+                                <span style="color: #e84393; font-weight: bold; font-size: 1.2rem;">₨3,500</span>
+                            </div>
+                            <div class="wishlist-actions">
+                                <button class="move-to-cart">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <button class="view-details">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Add more items as needed -->
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="wishlist-sidebar">
+                <h3 style="margin-bottom: 1.5rem; color: #2d3436;">Wishlist Tips</h3>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                        <i class="fas fa-check" style="color: #00b894; position: absolute; left: 0;"></i>
+                        <p style="font-size: 0.9rem;">Save items you're interested in</p>
+                    </li>
+                    <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                        <i class="fas fa-check" style="color: #00b894; position: absolute; left: 0;"></i>
+                        <p style="font-size: 0.9rem;">Get notified when prices drop</p>
+                    </li>
+                    <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                        <i class="fas fa-check" style="color: #00b894; position: absolute; left: 0;"></i>
+                        <p style="font-size: 0.9rem;">Share wishlist with friends & family</p>
+                    </li>
+                    <li style="margin-bottom: 1rem; padding-left: 1.5rem; position: relative;">
+                        <i class="fas fa-check" style="color: #00b894; position: absolute; left: 0;"></i>
+                        <p style="font-size: 0.9rem;">Move items to cart when ready to buy</p>
+                    </li>
+                </ul>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="margin-bottom: 1rem; color: #2d3436;">Share Wishlist</h4>
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">Let others see what you like</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <button style="flex: 1; padding: 0.8rem; background: #4267B2; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button style="flex: 1; padding: 0.8rem; background: #1DA1F2; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button style="flex: 1; padding: 0.8rem; background: #25D366; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Inza Fashion. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Wishlist functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove item from wishlist
+            document.querySelectorAll('.remove-wishlist').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const item = this.closest('.wishlist-item');
+                    item.style.animation = 'fadeOut 0.3s ease';
+                    setTimeout(() => {
+                        item.remove();
+                        updateWishlistStats();
+                    }, 300);
+                });
+            });
+            
+            // Add to cart from wishlist
+            document.querySelectorAll('.move-to-cart').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const item = this.closest('.wishlist-item');
+                    const productName = item.querySelector('h4').textContent;
+                    alert(`Added ${productName} to cart!`);
+                    this.innerHTML = '<i class="fas fa-check"></i> Added';
+                    this.style.background = '#00b894';
+                    this.disabled = true;
+                });
+            });
+            
+            // Clear all wishlist
+            document.querySelector('button:contains("Clear All")').addEventListener('click', function() {
+                if (confirm('Are you sure you want to clear your entire wishlist?')) {
+                    document.getElementById('wishlist-items').innerHTML = '';
+                    document.getElementById('empty-wishlist').style.display = 'block';
+                    updateWishlistStats();
+                }
+            });
+            
+            function updateWishlistStats() {
+                const items = document.querySelectorAll('.wishlist-item').length;
+                document.querySelector('.stat-card h3').textContent = items;
+                
+                if (items === 0) {
+                    document.getElementById('empty-wishlist').style.display = 'block';
+                }
+            }
+        });
+    </script>
+    <style>
+        @keyframes fadeOut {
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.8); }
+        }
+    </style>
+</body>
+</html>

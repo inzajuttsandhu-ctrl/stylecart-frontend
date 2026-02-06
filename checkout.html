@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | StyleCart</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .checkout-page {
+            padding: 3rem 2rem;
+            min-height: 70vh;
+        }
+
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .checkout-header {
+            margin-bottom: 2rem;
+        }
+
+        .checkout-header h1 {
+            font-size: 2.5rem;
+            color: #2f3542;
+        }
+
+        .checkout-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            gap: 2rem;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #ddd;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .step.active .step-number {
+            background: #ff4757;
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .step.active .step-label {
+            color: #ff4757;
+            font-weight: 500;
+        }
+
+        .checkout-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .checkout-steps {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        .checkout-form {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #2f3542;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f1f2f6;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2f3542;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff4757;
+            box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .payment-method {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-method:hover,
+        .payment-method.active {
+            border-color: #ff4757;
+            background: #fff5f5;
+        }
+
+        .payment-method i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .payment-method.active i {
+            color: #ff4757;
+        }
+
+        .order-summary {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .order-summary h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #2f3542;
+        }
+
+        .order-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #f1f2f6;
+        }
+
+        .order-total {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #ff4757;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .total-row.grand-total {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ff4757;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1.5rem;
+        }
+
+        .place-order-btn:hover {
+            background: #ff3838;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 71, 87, 0.3);
+        }
+
+        .empty-order {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .back-to-cart {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #ff4757;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== NAVBAR ========== -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-logo">
+                <i class="fas fa-shopping-bag"></i>
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span>StyleCart</span>
+                </a>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="cart.html" class="nav-link cart-link">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                    <span class="cart-count">0</span>
+                </a></li>
+            </ul>
+
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ========== CHECKOUT CONTENT ========== -->
+    <main class="checkout-page">
+        <div class="checkout-container">
+            <div class="checkout-header">
+                <h1>Checkout</h1>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="checkout-steps">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Information</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Shipping</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Payment</div>
+                </div>
+            </div>
+
+            <div class="checkout-content">
+                <!-- Checkout Form -->
+                <div class="checkout-form">
+                    <form id="checkout-form">
+                        <!-- Personal Information -->
+                        <div class="form-section">
+                            <h2>Personal Information</h2>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+                        </div>
+
+                        <!-- Shipping Address -->
+                        <div class="form-section">
+                            <h2>Shipping Address</h2>
+                            <div class="form-group">
+                                <label for="address">Street Address *</label>
+                                <textarea id="address" rows="3" required></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">City *</label>
+                                    <input type="text" id="city" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="state">State *</label>
+                                    <input type="text" id="state" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="zip">ZIP Code *</label>
+                                    <input type="text" id="zip" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="country">Country *</label>
+                                    <select id="country" required>
+                                        <option value="">Select Country</option>
+                                        <option value="IN">India</option>
+                                        <option value="US">United States</option>
+                                        <option value="UK">United Kingdom</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="AU">Australia</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="form-section">
+                            <h2>Payment Method</h2>
+                            <div class="payment-methods">
+                                <div class="payment-method active" onclick="selectPayment('card')">
+                                    <i class="fas fa-credit-card"></i>
+                                    <p>Credit/Debit Card</p>
+                                </div>
+                                <div class="payment-method" onclick="selectPayment('paypal')">
+                                    <i class="fab fa-paypal"></i>
+                                    <p>PayPal</p>
+                                </div>
+                                <div class="payment-method" onclick="selectPayment('cod')">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <p>Cash on Delivery</p>
+                                </div>
+                                <div class="payment-method" onclick="selectPayment('upi')">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <p>UPI</p>
+                                </div>
+                            </div>
+                            <input type="hidden" id="payment-method" value="card">
+                        </div>
+
+                        <!-- Terms & Conditions -->
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; gap: 10px;">
+                                <input type="checkbox" required>
+                                <span>I agree to the <a href="#" style="color: #ff4757;">Terms & Conditions</a> and <a href="#" style="color: #ff4757;">Privacy Policy</a></span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="place-order-btn">
+                            <i class="fas fa-lock"></i> Place Order
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div class="order-items" id="checkout-items">
+                        <!-- Order items will be loaded here -->
+                    </div>
+                    <div class="order-total">
+                        <div class="total-row">
+                            <span>Subtotal</span>
+                            <span id="checkout-subtotal">₹0</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Shipping</span>
+                            <span id="checkout-shipping">₹99</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Tax (18%)</span>
+                            <span id="checkout-tax">₹0</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Total</span>
+                            <span id="checkout-total">₹99</span>
+                        </div>
+                    </div>
+                    
+                    <a href="cart.html" class="back-to-cart">
+                        <i class="fas fa-arrow-left"></i> Back to Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 StyleCart</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script src="script.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inza Fashion | Premium Pakistani Clothing</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        /* Additional inline styles */
+        .trending-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #e84393, #0984e3);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+        
+        .discount-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #00b894;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== NAVBAR ========== -->
+    <header class="header">
+        <nav class="navbar">
+            <!-- Logo -->
+            <div class="nav-logo">
+                <i class="fas fa-crown" style="color: #e84393;"></i>
+                <span class="brand-name">
+                    <span class="brand-first">Inza</span>
+                    <span class="brand-second">Fashion</span>
+                </span>
+            </div>
+
+            <!-- Currency Converter -->
+            <div class="currency-converter">
+                <select id="currency-select">
+                    <option value="PKR">PKR ₨</option>
+                    <option value="USD">USD $</option>
+                    <option value="EUR">EUR €</option>
+                    <option value="GBP">GBP £</option>
+                    <option value="AED">AED د.إ</option>
+                </select>
+                <span id="exchange-rate">1$ = ₨280</span>
+            </div>
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="products.html" class="nav-link"><i class="fas fa-store"></i> Products</a></li>
+                <li><a href="categories.html" class="nav-link"><i class="fas fa-th-large"></i> Categories</a></li>
+                <li><a href="cart.html" class="nav-link cart-link">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                    <span class="cart-count">0</span>
+                </a></li>
+                <li><a href="wishlist.html" class="nav-link wishlist-link">
+                    <i class="fas fa-heart"></i> Wishlist
+                    <span class="wishlist-count">0</span>
+                </a></li>
+                <li><a href="account.html" class="nav-link"><i class="fas fa-user"></i> Account</a></li>
+            </ul>
+
+            <!-- Search Bar -->
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search products...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero-section" data-aos="fade-up">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-right" data-aos-delay="200">
+                <h1 class="hero-title">Pakistani Fashion <span class="highlight">Reimagined</span></h1>
+                <p class="hero-subtitle">Discover premium clothing, accessories, and traditional wear with modern elegance. Experience the finest quality at unbeatable prices.</p>
+                <div class="hero-buttons">
+                    <a href="products.html" class="btn btn-primary">Shop Collection <i class="fas fa-arrow-right"></i></a>
+                    <a href="#new-arrivals" class="btn btn-secondary">New Arrivals</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h3>10K+</h3>
+                        <p>Happy Customers</p>
+                    </div>
+                    <div class="stat">
+                        <h3>500+</h3>
+                        <p>Designs</p>
+                    </div>
+                    <div class="stat">
+                        <h3>24/7</h3>
+                        <p>Support</p>
+                    </div>
+                    <div class="stat">
+                        <h3>100%</h3>
+                        <p>Quality Guarantee</p>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image" data-aos="fade-left" data-aos-delay="400">
+                <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=800&fit=crop" alt="Pakistani Fashion">
+                <div class="trending-badge">TRENDING NOW</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FLASH SALE BANNER ========== -->
+    <section class="flash-sale" data-aos="zoom-in">
+        <div class="container">
+            <div class="flash-content">
+                <div class="flash-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="flash-text">
+                    <h3>FLASH SALE! <span class="highlight">50% OFF</span></h3>
+                    <p>On selected items. Limited time offer!</p>
+                </div>
+                <div class="flash-timer">
+                    <div class="timer-box">
+                        <span id="hours">24</span>
+                        <small>Hours</small>
+                    </div>
+                    <div class="timer-box">
+                        <span id="minutes">60</span>
+                        <small>Minutes</small>
+                    </div>
+                    <div class="timer-box">
+                        <span id="seconds">60</span>
+                        <small>Seconds</small>
+                    </div>
+                </div>
+                <a href="sale.html" class="btn btn-primary flash-btn">Shop Sale <i class="fas fa-fire"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CATEGORIES ========== -->
+    <section class="categories-section" id="categories" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Shop By Category</h2>
+            <p class="section-subtitle">Explore our exclusive collections</p>
+            
+            <div class="categories-grid">
+                <div class="category-card category-men" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Men's Collection</h3>
+                    <p>Kurtas, Sherwanis, Waistcoats & more</p>
+                    <a href="mens.html" class="category-link">View Collection <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card category-women" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="category-icon">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h3>Women's Collection</h3>
+                    <p>Unstitched, Ready to Wear, Abayas</p>
+                    <a href="womens.html" class="category-link">View Collection <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card category-kids" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="category-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Kids' Collection</h3>
+                    <p>Clothing, Accessories, Party Wear</p>
+                    <a href="kids.html" class="category-link">View Collection <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card category-accessories" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="category-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Accessories</h3>
+                    <p>Bags, Watches, Jewellery, Perfumes</p>
+                    <a href="accessories.html" class="category-link">View Collection <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card category-home" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Home & Living</h3>
+                    <p>Bed Sheets, Curtains, Decoration</p>
+                    <a href="home.html" class="category-link">View Collection <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="category-card category-sale" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="category-icon">
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <h3>Sale</h3>
+                    <p>Up to 70% Off on Selected Items</p>
+                    <a href="sale.html" class="category-link">View Deals <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== NEW ARRIVALS ========== -->
+    <section class="products-section" id="new-arrivals" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">New Arrivals</h2>
+                    <p class="section-subtitle">Fresh styles just landed</p>
+                </div>
+                <a href="products.html?sort=newest" class="view-all-btn">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="products-grid" id="new-arrivals-products">
+                <!-- New arrivals loaded by JavaScript -->
+                <div class="loading-shimmer" style="height: 400px; border-radius: 20px; grid-column: 1/-1;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURED PRODUCTS ========== -->
+    <section class="products-section" style="background: #f9f7fe;" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Featured Products</h2>
+                    <p class="section-subtitle">Customer favorites & best sellers</p>
+                </div>
+                <div class="featured-tabs">
+                    <button class="tab-btn active" data-filter="all">All</button>
+                    <button class="tab-btn" data-filter="men">Men</button>
+                    <button class="tab-btn" data-filter="women">Women</button>
+                    <button class="tab-btn" data-filter="kids">Kids</button>
+                </div>
+            </div>
+
+            <div class="products-grid" id="featured-products">
+                <!-- Featured products loaded by JavaScript -->
+                <div class="loading-shimmer" style="height: 400px; border-radius: 20px; grid-column: 1/-1;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHY CHOOSE US ========== -->
+    <section class="features-section" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">Why Choose Inza Fashion?</h2>
+            <p class="section-subtitle">Experience shopping like never before</p>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Quality Guarantee</h3>
+                    <p>100% authentic products with quality assurance</p>
+                </div>
+                
+                <div class="feature-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Free Shipping</h3>
+                    <p>Free delivery on orders above ₨3000</p>
+                </div>
+                
+                <div class="feature-card" data-aos="flip-left" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Easy Returns</h3>
+                    <p>14-day return policy with no questions asked</p>
+                </div>
+                
+                <div class="feature-card" data-aos="flip-left" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock customer support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="testimonials-section" data-aos="fade-up">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Trusted by thousands of happy shoppers</p>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"The quality of the fabric is amazing! My wedding sherwani from Inza Fashion got so many compliments."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Customer">
+                        <div>
+                            <h4>Ahmed Raza</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Best online shopping experience! The lawn suits are exactly as shown in pictures. Highly recommended!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Customer">
+                        <div>
+                            <h4>Fatima Khan</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Great customer service and fast delivery. Will definitely shop again for my kids' clothes."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Customer">
+                        <div>
+                            <h4>Bilal Ahmed</h4>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== NEWSLETTER ========== -->
+    <section class="newsletter-section" data-aos="fade-up">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Join Our Fashion Community</h2>
+                <p>Subscribe to get exclusive deals, new arrivals, and style tips directly in your inbox</p>
+                <form class="newsletter-form" id="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe <i class="fas fa-paper-plane"></i></button>
+                </form>
+                <p class="form-note">By subscribing, you agree to our Privacy Policy and consent to receive updates.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-crown" style="color: #e84393;"></i>
+                        <span style="font-family: 'Poppins', sans-serif;">
+                            <span style="color: #e84393; font-weight: 700;">Inza</span>
+                            <span style="color: #0984e3; font-weight: 300;">Fashion</span>
+                        </span>
+                    </div>
+                    <p class="footer-about">Premium Pakistani fashion brand offering traditional wear with contemporary designs. Quality, comfort, and style redefined.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="mens.html"><i class="fas fa-chevron-right"></i> Men's Collection</a></li>
+                        <li><a href="womens.html"><i class="fas fa-chevron-right"></i> Women's Collection</a></li>
+                        <li><a href="kids.html"><i class="fas fa-chevron-right"></i> Kids' Collection</a></li>
+                        <li><a href="accessories.html"><i class="fas fa-chevron-right"></i> Accessories</a></li>
+                        <li><a href="sale.html"><i class="fas fa-chevron-right"></i> Sale</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                        <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="shipping.html"><i class="fas fa-chevron-right"></i> Shipping Policy</a></li>
+                        <li><a href="returns.html"><i class="fas fa-chevron-right"></i> Returns & Refunds</a></li>
+                        <li><a href="privacy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Main Branch: Liberty Market, Lahore, Pakistan</li>
+                        <li><i class="fas fa-phone"></i> +92 300 1234567</li>
+                        <li><i class="fas fa-envelope"></i> support@inzafashion.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 10AM - 8PM</li>
+                    </ul>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard" title="MasterCard"></i>
+                        <i class="fab fa-cc-amex" title="American Express"></i>
+                        <i class="fas fa-money-bill-wave" title="Cash on Delivery"></i>
+                        <i class="fas fa-university" title="Bank Transfer"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 <span class="text-pink">Inza Fashion</span>. All rights reserved. | Made with <i class="fas fa-heart text-pink"></i> in Pakistan</p>
+                <div class="footer-links">
+                    <a href="terms.html">Terms of Service</a> |
+                    <a href="privacy.html">Privacy Policy</a> |
+                    <a href="sitemap.html">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script src="script.js"></script>
+    <script src="currency.js"></script>
+    <script src="products-data.js"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Initialize currency converter
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof initCurrency === 'function') {
+                initCurrency();
+            }
+            
+            // Flash sale timer
+            function updateFlashSaleTimer() {
+                const now = new Date();
+                const tomorrow = new Date(now);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setHours(0, 0, 0, 0);
+                
+                const diff = tomorrow - now;
+                
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+            
+            setInterval(updateFlashSaleTimer, 1000);
+            updateFlashSaleTimer();
+            
+            // Newsletter form submission
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    alert(`Thank you for subscribing with ${email}! You'll receive our updates soon.`);
+                    this.reset();
+                });
+            }
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    this.querySelector('i').classList.toggle('fa-bars');
+                    this.querySelector('i').classList.toggle('fa-times');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

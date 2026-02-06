@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Categories | Inza Fashion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .categories-hero {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .search-categories {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            position: relative;
+        }
+        
+        .search-categories input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            padding-left: 3rem;
+        }
+        
+        .search-categories i {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+        
+        .main-categories {
+            padding: 3rem 2rem;
+        }
+        
+        .category-large {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .large-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .large-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .large-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 2rem;
+        }
+        
+        .subcategories-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .subcategory-tag {
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .subcategory-tag:hover {
+            background: #0984e3;
+            color: white;
+        }
+        
+        .popular-tags {
+            padding: 3rem 2rem;
+            background: #f9f7fe;
+            border-radius: 20px;
+            margin: 2rem;
+        }
+        
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .tag {
+            background: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: #e84393;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .featured-brands {
+            padding: 3rem 2rem;
+        }
+        
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .brand-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-logo">
+                <i class="fas fa-crown" style="color: #e84393;"></i>
+                <span class="brand-name">
+                    <span class="brand-first">Inza</span>
+                    <span class="brand-second">Fashion</span>
+                </span>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="categories.html" class="nav-link active"><i class="fas fa-th-large"></i> Categories</a></li>
+                <li><a href="products.html" class="nav-link"><i class="fas fa-store"></i> All Products</a></li>
+                <li><a href="cart.html" class="nav-link cart-link">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                    <span class="cart-count">0</span>
+                </a></li>
+            </ul>
+
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ========== CATEGORIES HERO ========== -->
+    <div class="categories-hero" data-aos="fade-down">
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Browse Categories</h1>
+        <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; opacity: 0.9;">
+            Explore our wide range of fashion categories for men, women, and kids
+        </p>
+        
+        <div class="search-categories">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search categories...">
+        </div>
+    </div>
+
+    <!-- ========== MAIN CATEGORIES ========== -->
+    <section class="main-categories">
+        <div class="container">
+            <h2 class="section-title">Main Categories</h2>
+            <p class="section-subtitle">Shop by your preferred category</p>
+            
+            <div class="category-large">
+                <div class="large-card" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1536766820879-059fec98ec0a?w=500" alt="Men's Fashion">
+                    <div class="card-content">
+                        <h3 style="margin-bottom: 1rem;">Men's Fashion</h3>
+                        <p style="color: #666; margin-bottom: 1.5rem;">Traditional and contemporary wear for men</p>
+                        <div class="subcategories-list">
+                            <span class="subcategory-tag">Kurtas</span>
+                            <span class="subcategory-tag">Sherwanis</span>
+                            <span class="subcategory-tag">Waistcoats</span>
+                            <span class="subcategory-tag">Shalwar Kameez</span>
+                            <span class="subcategory-tag">Casual Wear</span>
+                            <span class="subcategory-tag">Formal Wear</span>
+                        </div>
+                        <a href="mens.html" class="btn btn-primary" style="margin-top: 1.5rem; width: 100%; text-align: center;">Browse Collection</a>
+                    </div>
+                </div>
+                
+                <div class="large-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=500" alt="Women's Fashion">
+                    <div class="card-content">
+                        <h3 style="margin-bottom: 1rem;">Women's Fashion</h3>
+                        <p style="color: #666; margin-bottom: 1.5rem;">Elegant and stylish wear for women</p>
+                        <div class="subcategories-list">
+                            <span class="subcategory-tag">Unstitched</span>
+                            <span class="subcategory-tag">Ready to Wear</span>
+                            <span class="subcategory-tag">Abayas</span>
+                            <span class="subcategory-tag">Hijabs</span>
+                            <span class="subcategory-tag">Party Wear</span>
+                            <span class="subcategory-tag">Casual Wear</span>
+                        </div>
+                        <a href="womens.html" class="btn btn-primary" style="margin-top: 1.5rem; width: 100%; text-align: center;">Browse Collection</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="category-large">
+                <div class="large-card" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=500" alt="Kids Collection">
+                    <div class="card-content">
+                        <h3 style="margin-bottom: 1rem;">Kids Collection</h3>
+                        <p style="color: #666; margin-bottom: 1.5rem;">Adorable clothing for children</p>
+                        <div class="subcategories-list">
+                            <span class="subcategory-tag">Boys Wear</span>
+                            <span class="subcategory-tag">Girls Wear</span>
+                            <span class="subcategory-tag">Infants</span>
+                            <span class="subcategory-tag">School Uniform</span>
+                            <span class="subcategory-tag">Party Wear</span>
+                            <span class="subcategory-tag">Footwear</span>
+                        </div>
+                        <a href="kids.html" class="btn btn-primary" style="margin-top: 1.5rem; width: 100%; text-align: center;">Browse Collection</a>
+                    </div>
+                </div>
+                
+                <div class="large-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500" alt="Accessories">
+                    <div class="card-content">
+                        <h3 style="margin-bottom: 1rem;">Accessories</h3>
+                        <p style="color: #666; margin-bottom: 1.5rem;">Complete your look with accessories</p>
+                        <div class="subcategories-list">
+                            <span class="subcategory-tag">Handbags</span>
+                            <span class="subcategory-tag">Watches</span>
+                            <span class="subcategory-tag">Belts</span>
+                            <span class="subcategory-tag">Sunglasses</span>
+                            <span class="subcategory-tag">Perfumes</span>
+                            <span class="subcategory-tag">Wallets</span>
+                        </div>
+                        <a href="accessories.html" class="btn btn-primary" style="margin-top: 1.5rem; width: 100%; text-align: center;">Browse Collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== POPULAR TAGS ========== -->
+    <div class="popular-tags" data-aos="fade-up">
+        <h2 style="text-align: center; margin-bottom: 1rem;">Popular Tags</h2>
+        <p style="text-align: center; color: #666; max-width: 600px; margin: 0 auto;">
+            Browse products by popular tags
+        </p>
+        
+        <div class="tags-container">
+            <span class="tag">Summer Collection</span>
+            <span class="tag">Winter Wear</span>
+            <span class="tag">Eid Special</span>
+            <span class="tag">Wedding Collection</span>
+            <span class="tag">Casual Wear</span>
+            <span class="tag">Formal Wear</span>
+            <span class="tag">Party Wear</span>
+            <span class="tag">Traditional</span>
+            <span class="tag">Modern</span>
+            <span class="tag">Cotton</span>
+            <span class="tag">Silk</span>
+            <span class="tag">Lawn</span>
+            <span class="tag">Chiffon</span>
+            <span class="tag">On Sale</span>
+            <span class="tag">New Arrivals</span>
+        </div>
+    </div>
+
+    <!-- ========== FEATURED BRANDS ========== -->
+    <section class="featured-brands">
+        <div class="container">
+            <h2 class="section-title">Featured Brands</h2>
+            <p class="section-subtitle">Shop from our trusted brands</p>
+            
+            <div class="brands-grid">
+                <div class="brand-card" data-aos="zoom-in">
+                    <div style="font-size: 2.5rem; color: #e84393; margin-bottom: 1rem;">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h4>Inza Premium</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Luxury Collection</p>
+                </div>
+                
+                <div class="brand-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div style="font-size: 2.5rem; color: #0984e3; margin-bottom: 1rem;">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h4>Inza Casual</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Everyday Wear</p>
+                </div>
+                
+                <div class="brand-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div style="font-size: 2.5rem; color: #00b894; margin-bottom: 1rem;">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h4>Inza Kids</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Children's Wear</p>
+                </div>
+                
+                <div class="brand-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div style="font-size: 2.5rem; color: #6c5ce7; margin-bottom: 1rem;">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h4>Inza Accessories</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Style Accessories</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 Inza Fashion. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        
+        // Tag click functionality
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                const tagText = this.textContent;
+                alert(`Searching for: ${tagText}`);
+                // In real implementation, this would filter products
+            });
+        });
+        
+        // Subcategory tag click
+        document.querySelectorAll('.subcategory-tag').forEach(tag => {
+            tag.addEventListener('click', function(e) {
+                e.preventDefault();
+                const category = this.textContent;
+                alert(`Showing ${category} products`);
+            });
+        });
+    </script>
+</body>
+</html>
